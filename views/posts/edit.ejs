@@ -1,0 +1,40 @@
+<!-- /views/posts/edit.ejs -->
+<% include ../partials/navbar %>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit <%= post.title %>
+        </title>
+    </head>
+
+    <body>
+        <h1>Edit <%= post.title %>
+        </h1>
+        <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= post.title %>" required>
+            <br>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="5" cols="30" required><%= post.content %></textarea>
+            <br>
+            <label for="genre">Genre:</label>
+            <select id="genre" name="genre">
+                <option value="Personal" <%=post.genre==="Personal" ? "selected" : "" %>>Personal</option>
+                <option value="Work" <%=post.genre==="Work" ? "selected" : "" %>>Work</option>
+                <option value="Travel" <%=post.genre==="Travel" ? "selected" : "" %>>Travel</option>
+                <option value="Other" <%=post.genre==="Other" ? "selected" : "" %>>Other</option>
+            </select>
+            <br>
+            <label for="isPrivate">Private:</label>
+            <input type="checkbox" id="isPrivate" name="isPrivate" <%=post.isPrivate ? "checked" : "" %>>
+            <br>
+            <button type="submit">Update Post</button>
+        </form>
+        <a href="/posts/<%= post._id %>">Cancel</a>
+    </body>
+
+    </html>
