@@ -1,24 +1,50 @@
 <!-- /views/partials/navbar.ejs -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">ThoughtScape</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-            <% if (session && session.user) { %>
-                <li class="nav-item">
-                    <a class="btn btn-primary mr-2" href="/posts/new">Create New Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-danger" href="/auth/sign-out">Sign Out</a>
-                </li>
-                <% } else { %>
-                    <li class="nav-item">
-                        <a class="btn btn-success mr-2" href="/auth/sign-in">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-info" href="/auth/sign-up">Sign Up</a>
-                    </li>
-                    <% } %>
-        </ul>
+<style>
+    nav {
+        background-color: #333;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav p {
+        margin: 0;
+    }
+
+    nav a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #555;
+        border-radius: 5px;
+    }
+
+    .nav-right {
+        display: flex;
+        gap: 15px;
+    }
+</style>
+
+<nav>
+    <p>
+        <a href="/">Home</a>
+    </p>
+    <div class="nav-right">
+        <% if (user) { %>
+            <h1>Welcome to the ThoughtScape, <%= user.username %>!</h1>
+            <a href="/posts">View Posts</a>
+            <a href="/posts/new">Create New Post</a>
+            <a href="/auth/sign-out">Sign Out</a>
+        <% } else { %>
+            <h1>Welcome to the ThoughtScape.</h1>
+            <a href="/auth/sign-up">Sign Up</a>
+            <a href="/auth/sign-in">Sign In</a>
+        <% } %>
     </div>
 </nav>
-<hr>

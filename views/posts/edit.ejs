@@ -1,5 +1,4 @@
 <!-- /views/posts/edit.ejs -->
-<% include ../partials/navbar %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -12,6 +11,7 @@
     </head>
 
     <body>
+        <%- include('../partials/navbar.ejs') %>
         <h1>Edit <%= post.title %>
         </h1>
         <form action="/posts/<%= post._id %>?_method=PUT" method="POST">

@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
     const skip = (page - 1) * limit;
 
     // Find public posts, with pagination
-    const posts = await Post.find({ isPrivate: false })
+    const posts = await Post.find({author: req.session.user._id}) // { isPrivate: false } in case you don't want to show private posts
       .populate("author", "username")
       .skip(skip)
       .limit(limit);

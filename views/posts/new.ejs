@@ -1,6 +1,4 @@
 <!-- /views/posts/new.ejs -->
-<% include ../partials/navbar %>
-
     <!DOCTYPE html>
     <html lang="en">
 
@@ -11,6 +9,8 @@
     </head>
 
     <body>
+        <%- include('../partials/navbar.ejs') %>
+
         <h1>Create a New Post</h1>
         <form action="/posts" method="POST">
             <label for="title">Title:</label>

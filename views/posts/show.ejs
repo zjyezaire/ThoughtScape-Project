@@ -1,5 +1,4 @@
 <!-- /views/posts/show.ejs -->
-<% include ../partials/navbar %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -13,6 +12,7 @@
     </head>
 
     <body>
+        <%- include('../partials/navbar.ejs') %>
         <h1>
             <%= post.title %>
         </h1>
@@ -29,7 +29,7 @@
         </p>
         <p>Last updated: <%= post.updatedAt.toDateString() %>
         </p>
-        <% if (post.author._id.toString()===session.user._id) { %>
+        <% if (post.author._id.toString() === user._id) { %>
             <a href="/posts/<%= post._id %>/edit">Edit</a>
             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit">Delete</button>

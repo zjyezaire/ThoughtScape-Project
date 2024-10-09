@@ -4,23 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  
 </head>
 <body>
-  
-  <% if (user) { %>
-    <h1>Welcome to the ThoughtScape, <%= user.username %>!</h1>
+  <%- include('./partials/navbar.ejs') %>
+  <h1>All Posts</h1>
+  <% publicPosts.forEach(post =>  { %>
+    <h2>
+      <%= post.title %>
+    </h2>
     <p>
-      <a href="/auth/sign-out">Sign out</a>
-      <a href="/posts/new" class="btn">New Post</a>
-
-
+      <%= post.content %>
     </p>
-  <% } else { %>
-    <h1>Welcome to the ThoughtScape.</h1>
-    <p>
-      <a href="/auth/sign-up">Sign up</a> or
-      <a href="/auth/sign-in">Sign in</a>.
+    <p>Author: <%= post.author.username %>
     </p>
-  <% } %>
+  <% }) %>
 </body>
 </html>
