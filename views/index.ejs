@@ -1,94 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
   <style>
-
-    
-    /* General body styling */
+    html,
     body {
-      font-family: Arial, sans-serif;
+      height: 100%;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f9;
-    }
-  
-    /* Navbar inclusion */
-    .navbar {
-      margin-bottom: 30px;
-    }
-  
-    /* Main content area */
-    main {
-      padding: 50px 20px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
     }
-  
-    /* Main Heading */
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+
+    body {
+      background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+      position: relative;
     }
-  
-    /* Description Paragraph */
-    p {
-      font-size: 1.3em;
-      line-height: 1.8;
+
+    /* Shooting stars setup */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(45deg, white, rgba(255, 255, 255, 0));
+      opacity: 0;
+      animation: shooting 2s linear infinite;
+    }
+
+    /* Randomly position each star */
+    .star:nth-child(1) {
+      top: 20%;
+      left: 40%;
+      animation-delay: 0s;
+    }
+
+    .star:nth-child(2) {
+      top: 60%;
+      left: 70%;
+      animation-delay: 0.5s;
+    }
+
+    .star:nth-child(3) {
+      top: 30%;
+      left: 80%;
+      animation-delay: 1s;
+    }
+
+    .star:nth-child(4) {
+      top: 80%;
+      left: 50%;
+      animation-delay: 1.5s;
+    }
+
+    .star:nth-child(5) {
+      top: 50%;
+      left: 20%;
+      animation-delay: 2s;
+    }
+
+    /* Shooting star animation */
+    @keyframes shooting {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(-300px) translateY(300px);
+        opacity: 0;
+      }
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
       max-width: 900px;
-      margin: 0 auto 40px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      line-height: 1.6;
+      animation: fadeIn 2s ease-in-out 1.5s;
+      animation-fill-mode: both;
     }
-  
-    /* Buttons styling */
-    button {
-      padding: 15px 25px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1.2em;
-      margin: 0 10px;
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 3rem;
+      /* Increased font size */
+      animation: fadeIn 2s ease-in-out 0.5s;
+      animation-fill-mode: both;
     }
-  
-    button:hover {
-      background-color: #0056b3;
+
+    h2 {
+      font-size: 2rem;
+      /* Increased font size */
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out 1.5s;
+      animation-fill-mode: both;
     }
-  
-    /* Form inline for buttons */
-    form {
-      display: inline-block;
+
+    h3 {
+      font-size: 1.75rem;
+      /* Increased font size */
+      margin-bottom: 15px;
+      animation: fadeIn 2s ease-in-out 1.5s;
+      animation-fill-mode: both;
+    }
+
+    p {
+      font-size: 1.25rem;
+      /* Increased font size for paragraphs */
+      margin-bottom: 15px;
+      animation: fadeIn 2s ease-in-out 1.5s;
+      animation-fill-mode: both;
     }
   </style>
 </head>
-<body>
-  <%- include('./partials/navbar.ejs') %>
-  <main>
-    <% if (!user) {%>
-      <h1>Welcome to ThoughtScape</h1>
-    
-      <p>
-        Thoughtscape is an innovative online journaling platform designed to help individuals explore, map, and reflect on
-        their
-        personal thoughts and experiences. By providing a tranquil, creative space, Thoughtscape encourages users to
-        document
-        their emotions, ideas, and moments of self-discovery. Whether through private journaling or sharing with a
-        supportive
-        community, Thoughtscape empowers people to chart their personal growth in a meaningful way.
-      </p>
-    <% } %>
 
-    <h2>Examle Posts From Fellow Users</h2>
-    <% publicPosts.forEach(post=> { %>
-      </h3>
-      <p>
-        <%= post.content %>
-      </p>
-      <p>Author: <%= post.author.username %>
-      </p>
-      <% }) %>
-  </main>
-  
+<body>
+  <div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+  <%- include('./partials/navbar.ejs') %>
+    <main>
+      <% if (!user) { %>
+        <h1>Welcome to ThoughtScape</h1>
+        <p>
+          Thoughtscape is an innovative online journaling platform designed to help individuals explore, map, and
+          reflect on their
+          personal thoughts and experiences. By providing a tranquil, creative space, Thoughtscape encourages users to
+          document
+          their emotions, ideas, and moments of self-discovery. Whether through private journaling or sharing with a
+          supportive
+          community, Thoughtscape empowers people to chart their personal growth in a meaningful way.
+        </p>
+        <% } %>
+
+          <h2>Example Posts From Fellow Users</h2>
+          <% publicPosts.forEach(post=> { %>
+            <h3>
+              <%= post.title %>
+            </h3>
+            <p>
+              <%= post.content %>
+            </p>
+            <p>Author: <%= post.author.username %>
+            </p>
+            <% }) %>
+    </main>
 </body>
+
 </html>
