@@ -1,50 +1,54 @@
-<!-- /views/partials/navbar.ejs -->
 <style>
     nav {
-        background-color: #333;
-        padding: 10px;
+        background-color: #007bff;
+        padding: 0.75rem 1.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    nav p {
-        margin: 0;
+        color: white;
     }
 
     nav a {
         color: white;
-        padding: 10px;
+        padding: 0.5rem 1rem;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 1rem;
         transition: background-color 0.3s ease;
+        border-radius: 4px;
     }
 
     nav a:hover {
-        background-color: #555;
-        border-radius: 5px;
+        background-color: #0056b3;
     }
 
     .nav-right {
         display: flex;
-        gap: 15px;
+        gap: 1rem;
+    }
+
+    .welcome-message {
+        margin-right: auto;
+        font-size: 1.25rem;
+        font-weight: bold;
     }
 </style>
 
 <nav>
-    <p>
-        <a href="/">Home</a>
-    </p>
+    <a href="/" class="welcome-message">
+        <% if (user) { %>
+            Welcome, <%= user.username %>!
+                <% } else { %>
+                    Welcome to ThoughtScape
+                    <% } %>
+    </a>
     <div class="nav-right">
         <% if (user) { %>
-            <h1>Welcome to the ThoughtScape, <%= user.username %>!</h1>
             <a href="/posts">View Posts</a>
             <a href="/posts/new">Create New Post</a>
             <a href="/auth/sign-out">Sign Out</a>
-        <% } else { %>
-            <h1>Welcome to the ThoughtScape.</h1>
-            <a href="/auth/sign-up">Sign Up</a>
-            <a href="/auth/sign-in">Sign In</a>
-        <% } %>
+            <% } else { %>
+                <a href="/auth/sign-up">Sign Up</a>
+                <a href="/auth/sign-in">Sign In</a>
+                <% } %>
     </div>
 </nav>

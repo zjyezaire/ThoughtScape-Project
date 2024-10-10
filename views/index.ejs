@@ -4,20 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  <style>
+
+    
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
   
+    /* Navbar inclusion */
+    .navbar {
+      margin-bottom: 30px;
+    }
+  
+    /* Main content area */
+    main {
+      padding: 50px 20px;
+      text-align: center;
+    }
+  
+    /* Main Heading */
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+  
+    /* Description Paragraph */
+    p {
+      font-size: 1.3em;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+  
+    /* Buttons styling */
+    button {
+      padding: 15px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin: 0 10px;
+    }
+  
+    button:hover {
+      background-color: #0056b3;
+    }
+  
+    /* Form inline for buttons */
+    form {
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
   <%- include('./partials/navbar.ejs') %>
-  <h1>All Posts</h1>
-  <% publicPosts.forEach(post =>  { %>
-    <h2>
-      <%= post.title %>
-    </h2>
-    <p>
-      <%= post.content %>
-    </p>
-    <p>Author: <%= post.author.username %>
-    </p>
-  <% }) %>
+  <main>
+    <% if (!user) {%>
+      <h1>Welcome to ThoughtScape</h1>
+    
+      <p>
+        Thoughtscape is an innovative online journaling platform designed to help individuals explore, map, and reflect on
+        their
+        personal thoughts and experiences. By providing a tranquil, creative space, Thoughtscape encourages users to
+        document
+        their emotions, ideas, and moments of self-discovery. Whether through private journaling or sharing with a
+        supportive
+        community, Thoughtscape empowers people to chart their personal growth in a meaningful way.
+      </p>
+    <% } %>
+
+    <h2>Examle Posts From Fellow Users</h2>
+    <% publicPosts.forEach(post=> { %>
+      </h3>
+      <p>
+        <%= post.content %>
+      </p>
+      <p>Author: <%= post.author.username %>
+      </p>
+      <% }) %>
+  </main>
+  
 </body>
 </html>

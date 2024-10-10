@@ -1,42 +1,107 @@
-<!-- /views/posts/show.ejs -->
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= post.title %>
+    </title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            <%= post.title %>
-        </title>
-    </head>
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    <body>
-        <%- include('../partials/navbar.ejs') %>
-        <h1>
-            <%= post.title %>
-        </h1>
-        <p>
-            <%= post.content %>
-        </p>
-        <p>Author: <%= post.author.username %>
-        </p>
-        <p>Genre: <%= post.genre %>
-        </p>
-        <p>Private: <%= post.isPrivate ? "Yes" : "No" %>
-        </p>
-        <p>Created at: <%= post.createdAt.toDateString() %>
-        </p>
-        <p>Last updated: <%= post.updatedAt.toDateString() %>
-        </p>
-        <% if (post.author._id.toString() === user._id) { %>
-            <a href="/posts/<%= post._id %>/edit">Edit</a>
-            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" style="display: inline;">
-                <button type="submit">Delete</button>
-            </form>
-            <% } %>
-                <br>
-                <a href="/posts">Back to Posts</a>
-    </body>
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
 
-    </html>
+        .post-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        form {
+            display: inline;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+        <div class="container">
+            <h1>
+                <%= post.title %>
+            </h1>
+
+            <p></p>
+                <%= post.content %>
+            </p>
+            
+            <p class="post-info">Author: <%= post.author.username %>
+            </p>
+            <p class="post-info">Genre: <%= post.genre %> | Private: <%= post.isPrivate ? "Yes" : "No" %>
+            </p>
+            <p class="post-info">Created at: <%= post.createdAt.toDateString() %> | Last updated: <%=
+                        post.updatedAt.toDateString() %>
+            </p>
+            
+
+            <% if (post.author._id.toString()===user._id) { %>
+                <a href="/posts/<%= post._id %>/edit" class="button">Edit</a>
+                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+                <% } %>
+        </div>
+</body>
+
+</html>

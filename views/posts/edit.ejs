@@ -1,40 +1,117 @@
-<!-- /views/posts/edit.ejs -->
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= post.title %>
+    </title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit <%= post.title %>
-        </title>
-    </head>
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    <body>
-        <%- include('../partials/navbar.ejs') %>
-        <h1>Edit <%= post.title %>
-        </h1>
-        <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" value="<%= post.title %>" required>
-            <br>
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" rows="5" cols="30" required><%= post.content %></textarea>
-            <br>
-            <label for="genre">Genre:</label>
-            <select id="genre" name="genre">
-                <option value="Personal" <%=post.genre==="Personal" ? "selected" : "" %>>Personal</option>
-                <option value="Work" <%=post.genre==="Work" ? "selected" : "" %>>Work</option>
-                <option value="Travel" <%=post.genre==="Travel" ? "selected" : "" %>>Travel</option>
-                <option value="Other" <%=post.genre==="Other" ? "selected" : "" %>>Other</option>
-            </select>
-            <br>
-            <label for="isPrivate">Private:</label>
-            <input type="checkbox" id="isPrivate" name="isPrivate" <%=post.isPrivate ? "checked" : "" %>>
-            <br>
-            <button type="submit">Update Post</button>
-        </form>
-        <a href="/posts/<%= post._id %>">Cancel</a>
-    </body>
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
 
-    </html>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            width: fit-content;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        .cancel-link {
+            margin-top: 1rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+        <div class="container">
+            <h1>Edit <%= post.title %>
+            </h1>
+            <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="<%= post.title %>" required>
+
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" rows="5" required><%= post.content %></textarea>
+
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre">
+                    <option value="Personal" <%=post.genre==="Personal" ? "selected" : "" %>>Personal</option>
+                    <option value="Work" <%=post.genre==="Work" ? "selected" : "" %>>Work</option>
+                    <option value="Travel" <%=post.genre==="Travel" ? "selected" : "" %>>Travel</option>
+                    <option value="Other" <%=post.genre==="Other" ? "selected" : "" %>>Other</option>
+                </select>
+
+                <label for="isPrivate">
+                    <input type="checkbox" id="isPrivate" name="isPrivate" <%=post.isPrivate ? "checked" : "" %>>
+                    Private
+                </label>
+
+                <button type="submit" class="button">Update Post</button>
+            </form>
+            <a href="/posts/<%= post._id %>" class="cancel-link">Cancel</a>
+        </div>
+</body>
+
+</html>
